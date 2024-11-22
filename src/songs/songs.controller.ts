@@ -7,7 +7,7 @@ export class SongsController {
     constructor(private songsService: SongsService){}
 
     @Post()
-    create(@Body() createSongDTO: CreateSongDTO){
+    create(@Body() createSongDTO: CreateSongDTO){ // change was made here
         return this.songsService.create(createSongDTO);
     }
 
