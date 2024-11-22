@@ -8,7 +8,7 @@ export class SongsController {
 
     @Post()
     create(@Body() createSongDTO: CreateSongDTO){ // change was made here
-        return this.songsService.create(createSongDTO);
+        return this.songsService.create(createSongDTO); // and here
     }
 
     @Get()
