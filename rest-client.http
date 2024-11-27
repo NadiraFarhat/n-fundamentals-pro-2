@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "title": "lasting lover",
-    "artist": ["sigla"],
+    "artist": ["sigla", "whethan", "Lofi"],
     "releaseDate": "2022-01-23",
     "duration": "03:02"
 }

@@ -1,10 +1,17 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
+import { Connection } from 'src/common/constants/connection';
 
 @Controller('songs')
 export class SongsController {
-    constructor(private songsService: SongsService){}
+    constructor(
+        private songsService: SongsService,
+        @Inject('CONNECTION') // injecting the connection
+        private connection: Connection,
+    ){
+        console.log(`THIS IS THE CONNECTION STRING: ${this.connection.CONNECTION_STRING}`) // when songs controller is instanciated, this constructor funct will be called
+    }
 
     @Post()
     create(@Body() createSongDTO: CreateSongDTO){ // change was made here
@@ -27,11 +34,11 @@ export class SongsController {
             'id',
             new ParseIntPipe({
                 errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE
-            }),
+            }), // without the parse int pipe, the type of this id will be string
         )
         id: number,
     ){
-        return "fetch songs based on id"
+        return `fetch songs based on id ${typeof id}`
     }
 
     @Put(':id')
