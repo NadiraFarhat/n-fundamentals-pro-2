@@ -9,7 +9,7 @@ export class CreateSongDTO {
     @IsArray()
     @IsNotEmpty()
     @IsString({each: true}) // whatever string we passed in it, is gonna be true/okay. Tbh, it didn't worked without "each: true".
-    readonly artist: string[];
+    readonly artists: string[];
 
     @IsNotEmpty()
     @IsDateString()

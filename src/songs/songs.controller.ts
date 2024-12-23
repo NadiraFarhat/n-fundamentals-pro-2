@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 import { Connection } from 'src/common/constants/connection';
+import { Song } from './song.entity';
 
 @Controller({
     path: 'songs',
@@ -17,8 +18,8 @@ export class SongsController {
     }
 
     @Post()
-    create(@Body() createSongDTO: CreateSongDTO){ // change was made here
-        return this.songsService.create(createSongDTO); // and here
+    create(@Body() createSongDTO: CreateSongDTO): Promise<Song> {
+        return this.songsService.create(createSongDTO);
     }
 
     @Get()
