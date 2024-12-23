@@ -1,5 +1,5 @@
 // Add decorate based on the Validations
-import {IsArray, IsString, IsNotEmpty, IsDateString, IsMilitaryTime} from 'class-validator'
+import {IsArray, IsString, IsNotEmpty, IsDateString, IsMilitaryTime, IsOptional} from 'class-validator'
 
 export class CreateSongDTO {
     @IsString()
@@ -18,4 +18,8 @@ export class CreateSongDTO {
     @IsNotEmpty()
     @IsMilitaryTime()
     readonly duration: Date;
+
+    @IsString()
+    @IsOptional()
+    readonly lyrics: string; // added the lyrics field
 }
