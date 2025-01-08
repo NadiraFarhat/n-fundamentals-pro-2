@@ -1,5 +1,5 @@
 // Add decorate based on the Validations
-import {IsArray, IsString, IsNotEmpty, IsDateString, IsMilitaryTime, IsOptional} from 'class-validator'
+import {IsArray, IsString, IsNotEmpty, IsDateString, IsMilitaryTime, IsOptional, IsNumber} from 'class-validator'
 
 export class CreateSongDTO {
     @IsString()
@@ -8,8 +8,10 @@ export class CreateSongDTO {
 
     @IsArray()
     @IsNotEmpty()
-    @IsString({each: true}) // whatever string we passed in it, is gonna be true/okay. Tbh, it didn't worked without "each: true".
-    readonly artists: string[];
+    // @IsString({each: true})
+    // whatever string we passed in it, is gonna be true/okay. Tbh, it didn't worked without "each: true".
+    @IsNumber({}, {each: true})
+    readonly artists;
 
     @IsNotEmpty()
     @IsDateString()
